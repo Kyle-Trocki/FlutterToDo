@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:to_do_app/ToDo.dart';
 import 'package:uuid/uuid.dart';
 
 class AddToDoPage extends StatefulWidget {
-  const AddToDoPage({super.key});
+  final VoidCallback? onItemAdded;
+
+  const AddToDoPage({Key? key, this.onItemAdded}) : super(key: key);
 
   @override
   State<AddToDoPage> createState() => _AddToDoPageState();
@@ -57,6 +58,7 @@ class _AddToDoPageState extends State<AddToDoPage> {
 
     if (response.statusCode == 201) {
       newItemController.text = '';
+      widget.onItemAdded?.call();
       navBackToHome(context);
     }
   }

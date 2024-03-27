@@ -126,7 +126,9 @@ class _ToDoState extends State<ToDo> {
 
   void navToNewItemPage() {
     final route = MaterialPageRoute(
-      builder: (context) => AddToDoPage(),
+      builder: (context) => AddToDoPage(
+        onItemAdded: getAllToDos,
+      ),
     );
     Navigator.push(context, route);
   }
